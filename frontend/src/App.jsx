@@ -1,24 +1,19 @@
-import { createBrowserRouter, Router, RouterProvider, Routes } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from "react-router";
 import LandingPage from './pages/LandingPage';
-import CodeExplainPage from './pages/CodeExplainPage';
+import CodeExplain from './pages/CodeExplain';
 
-export default function App() {
-
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      Component: LandingPage
-    },
-    {
-      path: '/code-explain',
-      Component: CodeExplainPage,
-      // loader: loadRootData
-    }
-  ])
-
+function App() {
   return (
-    <div>
-      < RouterProvider router={router}/>
-    </div>
+    <BrowserRouter>
+      <div className="min-h-screen bg-gray-900 text-white">
+        <Routes>
+          <Route index path="/" element={<LandingPage />} />
+          <Route path="/code-explain" element={<CodeExplain />} />
+        </Routes>
+      </div>
+    // </BrowserRouter>
   );
 }
+
+export default App;

@@ -1,15 +1,24 @@
-import Features from "../components/sections/Features";
-import Footer from "../components/sections/Footer";
-import Hero from "../components/sections/Hero";
-import Navbar from "../components/sections/Navbar";
+import React from 'react';
+import Navbar from '../components/Navbar';
+import Hero from '../components/Hero';
+import Features from '../components/Features';
+import HowItWorks from '../components/HowItWorks';
+import Footer from '../components/Footer';
+import GlowingBackground from '../components/GlowingBackground';
 
-export default function LandingPage(){
-    return(
-        <main>
-            <Navbar/>
-            <Hero/>
-            <Features/>
-            <Footer/>
-        </main>
-    )
-}
+const LandingPage = () => {
+  return (
+    <div className="relative min-h-screen bg-gray-900 text-white overflow-hidden">
+      <GlowingBackground />
+      <Navbar />
+      <main>
+        <Hero />
+        <Features />
+        <HowItWorks />
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default LandingPage;

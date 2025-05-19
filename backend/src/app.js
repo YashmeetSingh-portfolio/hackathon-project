@@ -1,8 +1,9 @@
-require('dotenv/config');
-const express = require('express');
-const cors = require('cors');
-const http = require('http');
-const apiRouter = require('./routes/index.js');
+import 'dotenv/config';
+import express  from 'express';
+import cors from 'cors';
+import http from 'http';
+import bodyParser from 'body-parser';
+import { explainByAi } from './utils/ai-explain.js';
 
 const app = express();
 
@@ -19,7 +20,20 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api', apiRouter);
+app.post('/api/code-explain', async (req, res) => {
+    try{        
+        const { code } = req.body;
+        if(!code){
+            throw new Error("please provide Code");
+        }
+
+        const data = await explainByAi(code);
+        res.json({ data });
+
+    }catch(error){
+        return res.json({ error: "Unable to explain the code!", message: error.message.toString() }, 400);
+    }
+});
 
 
 server.listen(PORT, () => {
